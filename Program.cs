@@ -78,7 +78,19 @@
             #endregion
             #region Task6
             // Der gesamte Datensatz soll sich in der Konsole in einzelnen Blöcken zu jeweils 50 Datensätzen anzeigen lassen.  
-            // ???
+            int j = 0;
+            string str = "n";
+            do {
+                for (int i = 0; i < 50 && j < persons.Count; i++, j++) {
+                    Console.WriteLine(persons[j].ToString());
+                }
+                if (j < persons.Count) {
+                    Console.WriteLine("Continue ? Press [y] to print 50 more entries");
+                    str = Console.ReadLine();
+                } else {
+                    Console.WriteLine("Printed all persons, nothing more to do");
+                }
+            } while (str == "y" && j < 500);
             #endregion
             #region Task7
             //Ermöglichen Sie einem Nutzer den Namen einer Stadt einzugeben damit der Datensatz nach dieser Stadt gefiltert wird.

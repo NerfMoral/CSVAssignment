@@ -33,5 +33,9 @@
             EMail = eMail;
             Newsletter = newsletter;
         }
+        public override string ToString ()
+        {
+            return "#" + Id + " " + Gender + " " + Titel + " " + FirstName + " " + LastName + " " + Birthday + " " + Street + " " + HouseNumber + " " + Zipcode + " " + City + " " + Telefon + " " + Mobile + " " + EMail + " " + Newsletter;
+        }
     }
 }
