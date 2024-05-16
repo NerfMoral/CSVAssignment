@@ -20,21 +20,21 @@
                 }
             }
             persons.RemoveAt(0);
-            #region Aufgabe1
+            #region Task1
             //Geben Sie an wie viele Personen den Newsletter abonniert haben.
             var newsletter = (from person in persons
                               where person.Newsletter.Contains("ja")
                               select person).Count();
             Console.WriteLine($"Amount of People subscribed to the newsletter: {newsletter}");
             #endregion
-            #region Aufgabe2
+            #region Task2
             //Geben Sie an wie viele Prozent der Kunden männlich und wie viele weiblich sind.
             double maleRatio = (double)(from person in persons where person.Gender.Contains("Herr") select person).Count() / (double)(from person in persons select person).Count();
             double femaleRatio = (double)(from person in persons where person.Gender.Contains("Frau") select person).Count() / (double)(from person in persons select person).Count();
 
             Console.WriteLine($"male Ratio :{Math.Round(maleRatio * 100, 2)}% \t female Ratio {Math.Round(femaleRatio * 100, 2)}%");
             #endregion
-            #region Aufgabe3
+            #region Task3
             //Geben Sie den häufigsten E-Mail-Provider an.
             Dictionary<string, int> EMails = new();
             // select all emails and save them in Email
@@ -55,18 +55,18 @@
                 Console.WriteLine($"There are {mail.Value} people associated with the Provider {mail.Key}");
             }
             #endregion
-            #region Aufgabe4+5
+            #region Task4+5
             //Listen Sie die Kunden gruppiert nach Alter auf.
             //Geben Sie Name, Nachname und Alter, nicht Geburtstag, aller Kunden aus, welche einen Eintrag „Geburtsdatum“ haben.
-            Func<string, string> age = x =>
-{
-    if (!String.IsNullOrEmpty(x)) {
-        string[] splitBirthday = x.Split(".");
-        return splitBirthday[2];
-    } else {
-        return "not specified";
-    }
-};
+            Func<string, int> age = x =>
+            {
+                if (!String.IsNullOrEmpty(x)) {
+                    string[] splitBirthday = x.Split(".");
+                    return 2024 - Int32.Parse(splitBirthday[2]);
+                } else {
+                    return -1;
+                }
+            };
             var groupAge = from person in persons orderby age(person.Birthday) group person by age(person.Birthday);
             foreach (var altersgruppe in groupAge) {
                 Console.WriteLine($"Altersgruppe: {altersgruppe.Key}");
@@ -76,11 +76,11 @@
                 }
             }
             #endregion
-            #region Aufgabe6
+            #region Task6
             // Der gesamte Datensatz soll sich in der Konsole in einzelnen Blöcken zu jeweils 50 Datensätzen anzeigen lassen.  
             // ???
             #endregion
-            #region Aufgabe7
+            #region Task7
             //Ermöglichen Sie einem Nutzer den Namen einer Stadt einzugeben damit der Datensatz nach dieser Stadt gefiltert wird.
             //Gestalten Sie die ausgegebenen Kundendaten die dem Nutzer dann bezüglich dieser Stadt angezeigt werden nach Belieben.
             Console.WriteLine("Please input a city to filter by: ");
